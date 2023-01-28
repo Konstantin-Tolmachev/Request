@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/registration.css"/>
+    <title th:text="${'title'}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://unpkg.com/imask"></script>
+
+
+</head>
+<body>
+
+
+
+<section  class="booking">
+    <h3 >Регистрация</h3>
+    <!--action="/Registration" th:action="@{/Registration}" -->
+    <form th:action="@{/registration}" method="post">
+        <div class="allDiv">
+            <div class="wrap"><input type="text" onkeyup="checkParams()" id="username" name="username" placeholder="Логин"></div>
+            <div class="wrap"><input type="password" onkeyup="checkParams()" id="password" name="password" placeholder="Пароль"></div>
+            <!-- <div class="wrap"><input type="password" onkeyup="checkParams()" id="passwordConfirm" name="passwordConfirm" placeholder="Подтвердите пароль"></div> -->
+        </div>
+        <div class="btn">
+            <input type="submit" id="submit" class="glow-button" value="Зарегистрироваться">
+        </div>
+    </form>
+</section>
+
+
+
+
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://unpkg.com/imask"></script>
+<!--<script src="system/js/global.js"></script>  Для даты -->
+
+
+
+</body>
+
+<!-- <footer th:insert="blocks/footer :: footer"></footer> -->
+
+
+</html>

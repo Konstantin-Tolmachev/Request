@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Страница ошибки</title>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/error.css"/>
+</head>
+<html>
+
+<div class="errorPage">
+    <h2 class="oops">Бууу!</h2><br/>
+
+    <div class="error">
+        <p>Кажется, возникла проблема <br>
+            со страницей, которую вы запросили: <br>
+            <span class="span" th:text="${path}"></span></p>
+    </div>
+
+</div>
+
+<div class="img">
+    <img src="https://desktopmania.ru/pics/00/01/79/DesktopMania.ru-1791-300x225.jpg">
+</div>
+
+<input class="back" type="button" VALUE=">>>Вернуться назад<<<" onClick="history.go(-1);">
+
+</html>

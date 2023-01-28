@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org/thymeleaf-extras-springsecurity" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="css/homeCSS/authorizationTest.css"/>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+<div class="bg"> </div>
+<section  class="authorization">
+    <h1>Авторизуйтесь для входа</h1>
+    <form  th:action="@{/authorization}" method="post">
+        <div>
+            <div class="input">
+                <input type="text" onkeyup="checkParams()" id="username-input" name="fname" placeholder="Логин">
+            </div>
+
+            <div class="input">
+                <input type="password" id="password-input" placeholder="Пароль" name="lname">
+                <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+            </div>
+
+            <div class="input">
+                <input type="checkbox" id="politics1" onclick="check();" value="" autocomplete="off"/>
+                Я не робот
+            </div>
+
+            <div>
+                <input type="submit" name="submit" disabled="" class="buttonAuth" value="Перейти" >
+            </div>
+        </div>
+    </form>
+
+<!--    <form  th:action="@{/admin}" method="post">-->
+<!--        <div class="allDivName">-->
+<!--            <div><input type="text" onkeyup="checkParamsAddNewStaff()" id="addLname" name="lname" placeholder="Фамилия"></di>-->
+<!--                <div><input type="text" onkeyup="checkParamsAddNewStaff()" id="addFname" name="fname" placeholder="Имя"></div>-->
+<!--                <div><input type="text" onkeyup="checkParamsAddNewStaff()" id="addPname" name="pname" placeholder="Отчество"></div>-->
+<!--                <div><input list="character" onkeyup="checkParamsAddNewStaff()" id="addPosition" name="position" placeholder="Должность"></div>-->
+<!--                <datalist id="character" >-->
+<!--                    <option th:each="staff : ${positions}"-->
+<!--                            th:value="${staff}"-->
+<!--                            th:text="${staff}">-->
+<!--                    </option>-->
+<!--                </datalist>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <button class="btnStaff" id="btnAddNewStaff" disabled type="submit">Добавить</button>-->
+<!--    </form>-->
+
+</section>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="/js/allScriptsTest.js"></script>
+
+</body>
+</html>

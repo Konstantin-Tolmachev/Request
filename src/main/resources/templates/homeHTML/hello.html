@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org/thymeleaf-extras-springsecurity" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="css/homeCSS/authorization.css"/>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="/js/request.js"></script>
+</head>
+
+<body>
+
+<section  class="">
+    <h1>Привет, {???}!</h1>
+
+    <div th:each="el : ${authorizations}" class="request">
+        <div class="allDiv">
+
+
+            <div class="c1" >
+                <div th:text="${el.login}" class="staffReq"><input type="text" id="lname" name="lname" ></div>
+                <div th:text="${el.password}" class="staffReq"><input type="text" id="fname" name="fname" ></div>
+            </div>
+
+            <div >
+                <form  th:action="'/authorization/' + ${el.id} +'/remove'" method="post">
+                    <button class="btnDelete" type="submit">Удалить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="/js/allScripts.js"></script>
+
+</body>
+</html>

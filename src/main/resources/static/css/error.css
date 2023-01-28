@@ -1,0 +1,62 @@
+*, html {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    background:  white;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.img{
+    margin-left: 45%;
+}
+
+img{
+    position: absolute;
+    margin-top: -15%;
+    width: 30%;
+}
+
+.errorPage{
+    margin-top: 10%;
+}
+
+.errorPage>h2{
+    font-size: 3rem;
+    margin-bottom: 3%;
+    margin-left: 20%;
+}
+
+.error>p{
+    font-weight: lighter;
+    color: black;
+    margin-top: 0.5%;
+    font-size: 2rem;
+    margin-left: 5%;
+    text-indent: 60px;
+}
+
+.span{
+    margin-left: 15%;
+}
+
+.oops{
+    margin: 1%;
+}
+
+.back{
+    text-decoration:underline;
+    border: none;
+    margin-left: 10%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 5%;
+    padding-bottom: 1%;
+    font-size: 2rem;
+    cursor: pointer;
+    background: white;
+    color: black;
+}

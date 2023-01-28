@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/adminCSS/account.css"/>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <header th:insert="blocksHTML/headerAdmin :: headerAdmin"></header>
+</head>
+<body>
+
+<section class="addNewAccount">
+    <h1 >Добавить аккаунт</h1>
+
+    <div class="inputAccount">
+        <div class="inputAccountName">Логин</div>
+        <div class="inputAccountName">Пароль</div>
+        <div class="inputAccountName">Роль</div>
+    </div>
+
+    <form th:action="@{/admin-account}" th:object="${userForm}" method="post">
+        <input type="hidden" th:field="*{id}" th:value="${userForm.id}">
+            <div class="inputAccount">
+                <div>
+                    <input  onkeyup="checkParamsAddAccount()" id="username" th:field="*{username}" placeholder="Логин*">
+                    <p th:if="${#fields.hasErrors('username')} "
+                       th:class="${#fields.hasErrors('username')}? error">Минимальное значение 3 символа</p>
+                    <p th:text="${usernameError}"  class="error"></p>
+                </div>
+
+                <div>
+                    <input type="password" onkeyup="checkParamsAddAccount()" id="password" th:field="*{password}" placeholder="Пароль*">
+                    <a href="#" class="password-control" onclick="return show_hide_account_password(this);"></a>
+                    <p th:if="${#fields.hasErrors('password')}"
+                       th:class="${#fields.hasErrors('password')}? error">Минимальное значение 3 символа</p>
+                </div>
+
+
+                <input list="characterRoles"   th:field="*{roles}" onkeyup="checkParamsAddAccount()" id="roles" min="1" max="2" size="1"  placeholder="Права доступа*">
+                <datalist id="characterRoles" >
+                    <option th:each="role : ${listRoles}"
+                            th:value="${role.id}"
+                            th:utext="${role.rusName}">
+<!--                            th:attr="data-rusName=${role.rusName}, data-id=${role.id}">-->
+                    </option>
+                </datalist>
+                <!--                   th:text="${role.rusName}+' '+${role.id}"         th:utext="${role.rusName}"-->
+            </div>
+        <button class="btnAddAccount" id="btnAddAccount" disabled type="submit">Добавить</button>
+    </form>
+</section>
+
+<!--<input type="text" data-th-name="id" placeholder="id">-->
+<!--<input type="text" data-th-name="rusName" placeholder="rusName">-->
+
+<!--<select>-->
+<!--<option-->
+<!--        th:each="role : ${listRoles}"-->
+<!--        th:value="${role.id}"-->
+<!--        th:text="${role.id}+ ' ' +${role.rusName}"-->
+<!--        th:attr="data-id=${role.id},data-rusName=${role.rusName}"-->
+<!--&gt;-->
+<!--</option>-->
+<!--</select>-->
+
+<!--<script>-->
+<!--    const $id = document.querySelector('[name=id]');-->
+<!--    const $rusName = document.querySelector('[name=rusName]');-->
+
+<!--    document.querySelector('select').addEventListener(`change`, e => {-->
+<!--        const $option = e.target.options[e.target.selectedIndex];-->
+<!--        $id.value = $option.dataset.id;-->
+<!--        $rusName.value = $option.dataset.rusName;-->
+<!--    });-->
+<!--</script>-->
+
+
+<section class="allAccount">
+    <h1 >Список аккаунтов</h1>
+
+    <div class="inputAccountShow">
+        <div class="inputAccountName">Логин</div>
+        <div class="inputAccountName">Роль</div>
+    </div>
+
+    <div th:each="el : ${allUsers}"   class="accounts" >
+        <div class="inputAccountShow" >
+            <div th:text="${el.username}"></div>
+            <div th:each="role : ${el.roles}" th:text="${role.rusName}"></div>
+
+        </div>
+
+        <form  th:action="'/admin-account/' + ${el.id} +'/remove'" method="post">
+            <div th:if="${el.username != #authentication.name && el.username != 'Администратор'}">
+                <button class="btnDelete" onclick="return confirm('Удалить?')" type="submit">Удалить</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<div th:insert="blocksHTML/footer :: footer"></div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="/js/allScripts.js"></script>
+</body>
+</html>

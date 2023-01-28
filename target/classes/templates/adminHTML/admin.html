@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/adminCSS/admin.css"/>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <header th:insert="blocksHTML/headerAdmin :: headerAdmin"></header>
+</head>
+
+<body>
+
+<section class="addNewStaff">
+    <h1 >Добавить нового сотрудника</h1>
+
+    <div class="allDivName">
+        <div class="staffsName">Фамилия</div>
+        <div class="staffsName">Имя</div>
+        <div class="staffsName">Отчество</div>
+        <div class="staffsName">Должность</div>
+    </div>
+
+    <form  th:action="@{/admin}" method="post">
+        <div class="allDivName">
+                <div><input type="text" onkeyup="checkParamsAddNewStaff()" id="addLname" name="lname" placeholder="Фамилия"></di>
+                <div><input type="text" onkeyup="checkParamsAddNewStaff()" id="addFname" name="fname" placeholder="Имя"></div>
+                <div><input type="text" onkeyup="checkParamsAddNewStaff()" id="addPname" name="pname" placeholder="Отчество"></div>
+                <div><input list="character" onkeyup="checkParamsAddNewStaff()" id="addPosition" name="position" placeholder="Должность"></div>
+                    <datalist id="character" >
+                        <option th:each="staff : ${positions}"
+                                th:value="${staff}"
+                                th:text="${staff}">
+                        </option>
+                    </datalist>
+            </div>
+        </div>
+        <button class="btnStaff" id="btnAddNewStaff" disabled type="submit">Добавить</button>
+    </form>
+
+</section>
+
+<section >
+
+    <div class="StaffsFilter">
+        <h1>Список сотрудников</h1>
+
+        <div>
+            <form method="post" th:action="filter-staff">
+
+
+                <div class="DivRequest">
+                    <input list="characterr"  class="inn"  id="position" name="position" placeholder="Поиск по должности">
+                    <datalist id="characterr" >
+                        <option th:each="staff : ${positions}"
+                                th:value="${staff}"
+                                th:text="${staff}">
+                        </option>
+                    </datalist>
+                </div>
+
+                <div class="filterSearch">
+                    <button class="btnComment" id="submitFilter"  type="submit">Найти</button>
+                </div>
+            </form>
+        </div>
+
+        <div th:each="el : ${staffs}" class="request">
+            <div class="allDiv">
+                <div class="c1">
+                    <div class="staffReq1">Фамилия</div>
+                    <div class="staffReq1">Имя</div>
+                    <div class="staffReq1">Отчество</div>
+                    <div class="staffReq1">Должность</div>
+                </div>
+
+                <div class="c1" >
+                    <div th:text="${el.lname}" class="staffReq"><input type="text" id="lname" name="lname" ></div>
+                    <div th:text="${el.fname}" class="staffReq"><input type="text" id="fname" name="fname" ></div>
+                    <div th:text="${el.pname}" class="staffReq"><input type="text" id="pname" name="pname" ></div>
+                    <div th:text="${el.position}" class="staffReq"><input type="text" id="phonde" name="phone" ></div>
+                </div>
+
+                <div >
+                    <div class="btnEdit"><a th:href="'/admin/' + ${el.id} + '/edit'">Редактировать</a></div>
+                    <form  th:action="'/admin/' + ${el.id} +'/remove'" method="post">
+                        <button class="btnDelete" onclick="return confirm('Удалить?')" type="submit">Удалить</button>
+<!--                        <a href="/admin" onclick="return confirm('Are you sure?')">Delete</a>-->
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="blocksHTML/footer :: footer"></div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="/js/allScripts.js"></script>
+</body>
+
+</html>

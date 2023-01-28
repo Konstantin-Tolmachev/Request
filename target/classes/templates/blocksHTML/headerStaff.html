@@ -1,0 +1,19 @@
+<div th:fragment="headerStaff"
+     xmlns:th="http://www.thymeleaf.org">
+    <div class="divPosition">
+        <div class="position">Должность:</div>
+        <div class="positionAuth" th:text="${#authentication.name}"></div>
+    </div>
+
+    <nav>
+        <ul class="topmenu">
+            <li><a href="/staff-request">Входящие заявки</a></li>
+            <li><a href="/staff-status">Исходящие заявки</a></li>
+            <li class="h">
+                <form th:action="@{/logout}" method="post">
+                    <input class="btnAuth" type="submit" value="Выйти">
+                </form>
+            </li>
+        </ul>
+    </nav>
+</div>

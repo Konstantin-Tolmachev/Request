@@ -1,0 +1,237 @@
+*, html {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    background:  white;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+/*Шапка бара*/
+.topmenu {
+    width: 100%; /*Резиновая шапка*/
+    padding: 3%;
+    background-color: #008000;
+}
+
+/*Расположение текста в баре в линию*/
+.topmenu > li {
+    display: inline;
+}
+
+/*Текст в шапке бара*/
+.topmenu > li > a {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem;
+    padding: 1%;/*Отступы между текстом в шапке*/
+    color: white; /*Цвет шрифта*/
+    text-align: center;
+    text-decoration: none;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    transition: all .2s ease-in-out;
+}
+
+
+/*Изменения цвета при наведении курсора*/
+.topmenu li a:hover {
+    box-shadow: 0 0 0 0 white inset, 0 0 10px 1px green;
+    border-radius: .3rem;
+    color: #dddddd;
+}
+
+@media screen and (min-width: 900px) {
+    .topmenu> .h  {
+        float: right;
+    }
+}
+
+/**/
+.divPosition{
+    margin: 1%;
+}
+
+/**/
+.position{
+    margin-left: 3%;
+    display: inline;
+    font-size: 1.5rem;
+}
+
+/**/
+.positionAuth{
+    margin-left: 1%;
+    display: inline;
+    font-size: 1.5rem;
+}
+
+/**/
+.allStaffs{
+    outline: 1px solid #228B22;
+    padding: 1%;
+    box-shadow: 0 0 3pt 2pt #9ACD32;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 17%;
+    border-radius: 5px;
+    background-color: white;
+}
+
+/**/
+.allStaffs> h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-style: italic;
+    color: black;
+    margin-bottom: 3%;
+}
+
+/**/
+.c1{
+    column-count: 4;
+    margin-bottom: 1%;
+}
+
+/**/
+input#fname, #lname, #pname, #position{
+    width: 100%;
+    height: 40px;
+    font-size: 1.3rem;
+    line-height: 100%;
+    text-indent: 3%;
+}
+
+/**/
+.staffReq{
+    text-align: center;
+    /*display: table;*/
+    margin:  auto;
+    font-size: 1.1rem;
+}
+
+/**/
+.staffReq1{
+    text-align: center;
+    display: table;
+    margin:  auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/**/
+.btnUpdateStaff {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: .9rem;
+    cursor: pointer;
+    background: white;
+    color: green;
+}
+
+/**/
+.btnUpdateStaff[disabled]:hover {
+    cursor: default;
+}
+
+/**/
+.btnUpdateStaff:hover:not([disabled])  {
+    box-shadow: 0 0 1px 0 white inset, 0 0 10px 1px green;
+    color: black;
+    opacity: 1;
+    cursor: pointer;
+}
+
+/**/
+.btnAuth {
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+    background-color: green;
+    text-align: center;
+    text-decoration: none;
+}
+
+/**/
+.btnAuth:hover  {
+    box-shadow: 0 0 0 0 white inset, 0 0 10px 1px green;
+    border-radius: .3rem;
+    color: #dddddd;
+}
+
+/*!**!*/
+/*.btnBack{*/
+/*    padding-left: 3%;*/
+/*    padding-right: 3%;*/
+/*    padding-top: 1%;*/
+/*    padding-bottom: 1%;*/
+/*    margin-top: 1%;*/
+/*    font-size: .9rem;*/
+/*    cursor: pointer;*/
+/*    background: white;*/
+/*    color: green;*/
+/*}*/
+
+/*!**!*/
+/*.btnBack:hover{*/
+/*    box-shadow: 0 0 1px 0 white inset, 0 0 10px 1px green;*/
+/*    color: black;*/
+/*    opacity: 1;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/**/
+.inline{
+    display: inline;
+}
+
+/**/
+.btnBack {
+    /*margin-top: 1%;*/
+    margin-right:1%;
+    padding: 0.97%;
+    cursor: pointer;
+    width: 10%;
+    text-align: center;
+    float: left;
+    border: 2px solid #e34761;
+}
+/**/
+.btnBack>a {
+    text-decoration: none;
+    color:green;
+    font-size:1rem;
+    padding: 20% 25%;
+}
+/**/
+.btnBack:hover{
+    /*opacity: 1;*/
+    cursor: pointer;
+    color: black;
+    /*transition: all .2s ease-in-out;*/
+    box-shadow: 0 0 10px 0 green , 0 0 0 0 black;
+}
+/**/
+.btnBack > a:hover{
+    color: black;
+}
+
+
+/**/
+.footer{
+    left: 0;
+    bottom:0;
+    margin-top: 0;
+    padding: 3%;
+    width: 100%;
+    height: 100px;
+    background-color: green;
+    font-size: 1.1rem;
+    color: white;
+}

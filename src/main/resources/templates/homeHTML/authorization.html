@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org/thymeleaf-extras-springsecurity" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/homeCSS/authorization.css"/>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="/js/request.js"></script>
+</head>
+
+<body>
+
+<h1>Система формирования заявок на предприятии "АБЦ"</h1>
+
+<section  class="authorization">
+    <h1>Авторизация</h1>
+    <form th:action="@{/}" th:authentication-success-handler-ref="authSuccessHandler" method="post">
+        <div>
+            <div class="input">
+                <input type="text" onkeyup="checkParams()" id="username-input" name="username" placeholder="Логин">
+            </div>
+
+            <div class="input">
+                <input type="password" id="password-input" placeholder="Пароль" name="password">
+                <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+            </div>
+
+            <div th:if="${param.error}">
+                <div class="error">
+                    Логин или пароль введен неверно!
+                </div>
+            </div>
+
+            <div>
+                <input type="submit" id="asubmit" class="buttonAuth" value="Авторизоваться" >
+            </div>
+        </div>
+    </form>
+
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <form  th:action="@{/admin}" >
+            <input class="buttonHome" type="submit" value="Домой">
+        </form>
+    </div>
+
+    <div sec:authorize="hasRole('ROLE_STAFF')">
+        <form  th:action="@{/staff-request}" >
+            <input class="buttonHome" type="submit" value="Домой">
+        </form>
+    </div>
+</section>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="/js/allScripts.js"></script>
+
+</body>
+</html>

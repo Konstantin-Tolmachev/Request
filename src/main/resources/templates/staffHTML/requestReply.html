@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/staffCSS/requestReply.css"/>
+    <title th:text="${'Ответить на заявку'}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <header th:insert="blocksHTML/headerStaff :: headerStaff"></header>
+</head>
+
+<body>
+
+<section class="newRequest">
+    <h1 >Ответить на заявку</h1>
+
+    <form  method="post">
+        <div th:each="el : ${post}">
+
+            <div class="DivRequest">
+                <p>№ кабинета</p>
+                <input class="inc" readonly type="text" th:value="${el.room}"  id="roomEdit" name="room" placeholder="№ кабинета">
+            </div>
+
+            <div class="DivRequest">
+                <p>Уровень заявки</p>
+                <input  class="inc" readonly th:value="${el.level}"  name="level" placeholder="Уровень заявки" id="levelEdit" />
+            </div>
+
+            <div class="DivRequest">
+                <p>Заказчик</p>
+                <input  class="inc" readonly  th:value="${el.fromWhom}"  name="fromWhom" placeholder="Заявитель" id="fromWhomEdit" />
+            </div>
+
+            <div class="DivRequest">
+                <p>Исполнитель</p>
+                <input   class="inc" readonly list="characterToWhom" th:value="${el.toWhom}"  name="toWhom" placeholder="Исполнитель" id="toWhomEditStaff" />
+                <datalist id="characterToWhom" >
+                    <option th:each="position : ${positions}"
+                            th:value="${position}"
+                            th:text="${position}">
+                    </option>
+                </datalist>
+            </div>
+
+
+            <div class="DivRequest">
+                <p>Статус</p>
+                <input  list="characterStatus" class="inn" type="search"
+                        onchange="checkParamsRequestEditForStaff()" name="status" placeholder="Статус заявки" id="statusEditStaff" />
+                <datalist id="characterStatus" >
+                    <option value="" disabled selected hidden>Статус заявки</option>-->
+                    <option value="Выполнено">Выполнено</option>
+                    <option value="На выполнении">На выполнении</option>
+                    <option value="Не выполнено">Не выполнено</option>
+                </datalist>
+            </div>
+
+            <div class="DivRequest">
+                <p>ФИО</p>
+                <input list="characterName" class="inn" type="search" onchange="checkParamsRequestEditForStaff()" name="name" id="nameEditStaff" placeholder="ФИО">
+                <datalist id="characterName" >
+                    <option
+                            th:if="${#authentication.name == staff.position}"
+                            th:each="staff : ${staffs}"
+                            th:value="${staff.lname}+ ' ' +${staff.fname}+ ' ' +${staff.pname}"
+                            th:text="${staff.lname}+' '+${staff.fname}+' '+${staff.pname}">
+                    </option>
+                </datalist>
+            </div>
+
+            <div class="DivRequest">
+                <p>Описание проблемы</p>
+                <textarea  class="sizeGray" readonly name="text"  id="textEditStaff" placeholder="Описание проблемы" th:text="${el.text}"></textarea>
+            </div>
+            <div class="DivRequest">
+                <p>Оставить комментарий</p>
+                <textarea  class="size" name="comment"  id="commentEditStaff" placeholder="Оставить комментарий" ></textarea>
+            </div>
+                <div class="inline">
+                    <form th:action="@{/staff-request}" method="post" >
+                        <input type="submit"  id="submitEditStaff" class="btnReplyRequest" disabled  value="Ответить"  >
+                    </form>
+                        <div class="btnBack"><a href="/staff-request">Назад</a></div>
+                </div>
+        </div>
+    </form>
+</section>
+
+<div th:insert="blocksHTML/footer :: footer"></div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="/js/allScripts.js"></script>
+
+</body>
+
+</html>

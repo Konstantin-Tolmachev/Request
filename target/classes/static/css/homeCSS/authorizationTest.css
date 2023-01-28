@@ -1,0 +1,130 @@
+*, html {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    background:  white;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.bg {
+    position: absolute;
+    z-index: 1;
+    left: -10px;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    filter: blur(1px);
+     background: url(https://image.freepik.com/free-vector/leaves-background-with-metallic-foil_79603-956.jpg) no-repeat center;
+      background-size: cover;
+}
+
+/**/
+h1{
+    margin-top:5%;
+    text-align: center;
+}
+
+/**/
+.authorization{
+    margin: 0 auto;
+    z-index: 2;
+    position: relative;
+    width: 50%;
+    padding: 2%;
+    margin-top: 10%;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+/**/
+.authorization > h1  {
+    /*margin-bottom: 5%;
+    text-align: center;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: linear-gradient(to bottom, red 0%, orange 25%, green 50%,  yellow 75%, blue 100%)*/
+
+    font-size: 1.7rem;
+    margin-bottom: 5%;
+    background: linear-gradient(135deg, #12BCB0 20%, #FABE0E 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0.3em 0.6em ;
+    border: 3px solid transparent;
+
+}
+
+
+
+/**/
+.input {
+    width: 100%;
+    margin: 1% auto;
+    position: relative;
+}
+
+/**/
+#password-input, #username-input {
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    text-indent: 10px;
+    margin-bottom: 2%;
+    font-size: 18px;
+    outline: none;
+    border: none;
+}
+
+/**/
+.password-control {
+    position: absolute;
+    top: 11px;
+    right: 27%;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+}
+
+/**/
+.password-control.view {
+    background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+}
+
+
+
+/*Кнопка "Добавить" не активна, если поля не заполнены*/
+.buttonAuth[disabled]:hover {
+    cursor: default;
+}
+/*Кнопка "Добавить" изменяется при наведении*/
+.buttonAuth:hover:not([disabled])  {
+    box-shadow: 0 0 1px 0 white inset, 0 0 0 0 green;
+    opacity: 1;
+    cursor: pointer;
+}
+/**/
+.buttonAuth{
+    max-width: 100%;
+    min-width: 50%;
+    height: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: white;
+    color: green;
+}
+
+/**/
+/*.buttonAuth:hover{
+    box-shadow: 0 0 1px 0 white inset, 0 0 10px 1px green;
+    color: black;
+    opacity: 1;
+    cursor: pointer;
+}*/
+
+

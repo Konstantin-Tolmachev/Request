@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/staffCSS/requestStatus.css">
+    <title th:text="${'Статус заявок'}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <header th:insert="blocksHTML/headerStaff :: headerStaff"></header>
+</head>
+<body>
+
+<section>
+    <div class="newRequest1">
+        <h1>Ответы на исходящие заявки</h1>
+        <div class="DivRequest">
+            <form method="post" th:action="staff-filter-request-from-whom">
+                <input class="inn" list="characterFilterRequest"  id="toWhom"  name="toWhom" placeholder="Должность исполнителя" />
+                <datalist id="characterFilterRequest" >
+                    <option th:each="position : ${positions}"
+                            th:value="${position}"
+                            th:text="${position}">
+                    </option>
+                </datalist>
+
+                <input  list="statusR" class="inn"
+                        onkeyup="checkParamsEdit()" name="filter" placeholder="Статус заявки" id="statusFilter" />
+                <datalist id="statusR">
+                    <option value="Выполнено">
+                    <option value="На выполнении">
+                    <option value="Не выполнено">
+                </datalist>
+                <div class="DivRequest">
+                    <button class="btnComment" id="submitFilter" type="submit">Найти</button>
+                </div>
+            </form>
+        </div>
+
+            <div th:if="${#authentication.name == el.fromWhom}" th:each="el : ${requests}" class="request">
+                <div>
+                    <div class="nameRequest">
+                        <h4>Заказчик:</h4>
+                        <p class="p" th:text="${el.fromWhom}"></p>
+                    </div>
+
+                    <div class="nameRequest">
+                        <h4>Исполнитель:</h4>
+                        <p class="p" th:text="${el.toWhom}"></p>
+                    </div>
+
+                    <div class="nameRequest">
+                        <h4>Статус:</h4>
+                        <p class="p" th:text="${el.status}"></p>
+                    </div>
+
+                    <div class="nameRequest">
+                        <h4>Именование заявки:</h4>
+                        <label>
+                            <p class="p" th:text="${el.text}"></p>
+                        </label>
+                    </div>
+
+                <div class="nameRequest">
+                        <h4>Комментарий:</h4>
+                        <label>
+                            <p class="p" th:text="${el.comment}"></p>
+                        </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="blocksHTML/footer :: footer"></div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="/js/allScripts.js"></script>
+
+</body>
+
+</html>

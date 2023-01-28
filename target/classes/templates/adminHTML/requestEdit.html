@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/adminCSS/requestEdit.css">
+    <title th:text="${'Редактировать заявку'}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <header th:insert="blocksHTML/headerAdmin :: headerAdmin"></header>
+</head>
+
+<body >
+
+<section class="newRequest">
+    <h1 >Редактировать заявку</h1>
+
+    <form  method="post">
+        <div th:each="el : ${post}" >
+
+            <div class="DivRequest">
+                <p>№ кабинета</p>
+                <input class="inn"  onkeyup="checkParamsEdit()" type="search" th:value="${el.room}" id="roomEdit" name="room" placeholder="№ кабинета">
+            </div>
+
+            <div class="DivRequest">
+                <p>Уровень заявки</p>
+                <input list="level" type="search" class="inn" th:value="${el.level}"
+                        onkeyup="checkParamsEdit()" name="level" placeholder="Уровень заявки" id="levelEdit" />
+
+                        <datalist id="level">
+                            <option value="В течение дня">
+                            <option value="Срочный">
+                        </datalist>
+            </div>
+
+            <div class="DivRequest">
+                <p>Заказчик</p>
+                <input type="search"  class="inn" list="characterFromWhom" th:value="${el.fromWhom}" onkeyup="checkParamsEdit()" name="fromWhom" placeholder="Заказчик" id="fromWhomEdit" />
+                <datalist id="characterFromWhom" >
+
+                    <option th:each="position : ${positions}"
+                            th:value="${position}"
+                            th:text="${position}">
+                    </option>
+                </datalist>
+            </div>
+
+            <div class="DivRequest">
+                <p>Исполнитель</p>
+                <input type="search"  class="inn" list="characterToWhom" th:value="${el.toWhom}" onkeyup="checkParamsEdit()" name="toWhom" placeholder="Исполнитель" id="toWhomEdit" />
+                <datalist id="characterToWhom" >
+
+                    <option th:each="position : ${positions}"
+                            th:value="${position}"
+                            th:text="${position}">
+                    </option>
+                </datalist>
+            </div>
+
+            <div class="DivRequest">
+                <p>Статус</p>
+                <input  list="status" type="search" class="inn" th:value="${el.status}"
+                       onkeyup="checkParamsEdit()" name="status" placeholder="Статус заявки" id="statusEdit" />
+
+                <datalist id="status">
+                    <option value="Выполнено">
+                    <option value="На выполнении">
+                    <option value="Не выполнено">
+                </datalist>
+            </div>
+
+            <div class="DivRequest">
+                <p>ФИО</p>
+                    <input type="search" list="characterName" class="inn" th:value="${el.name}"  onkeyup="checkParamsEdit()" name="name" id="nameEdit" placeholder="ФИО">
+                    <datalist id="characterName" >
+                        <option
+                                th:each="staff : ${staffs}"
+                                th:value="${staff.lname}+ ' ' +${staff.fname}+ ' ' +${staff.pname}"
+                                th:text="${staff.lname}+' '+${staff.fname}+' '+${staff.pname}">
+                        </option>
+                     </datalist>
+            </div>
+
+
+            <div class="DivRequest">
+                <p>Описание проблемы</p>
+                <textarea   class="size" name="text" onkeyup="checkParamsEdit()" id="textEdit" placeholder="Описание проблемы" th:text="${el.text}"></textarea>
+            </div>
+            <div class="DivRequest">
+                <p>Оставить комментарий</p>
+                <textarea  class="size" name="comment"  id="CommentEdit" placeholder="Оставить комментарий" th:text="${el.comment}"></textarea>
+            </div>
+
+                <div class="inline">
+                    <form th:action="@{/admin-request}" method="post" >
+                        <input type="submit"  id="submitEdit" class="btnEditRequest" disabled value="Обновить"  >
+                    </form>
+                    <div class="btnBack"><a href="/admin-request">Назад</a></div>
+                </div>
+        </div>
+    </form>
+
+</section>
+
+<div th:insert="blocksHTML/footer :: footer"></div>
+
+<script src="/js/allScripts.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</body>
+
+</html>

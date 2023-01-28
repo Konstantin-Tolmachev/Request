@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/adminCSS/staffEdit.css"/>
+    <title th:text="${'Редактировать сотрудника'}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="">
+    <header th:insert="blocksHTML/headerAdmin :: headerAdmin"></header>
+</head>
+
+<body>
+
+<section>
+    <div class="allStaffs">
+        <h1>Редактировать сотрудника</h1>
+        <div>
+            <div>
+                <div class="c1">
+                    <div class="staffReq1">Фамилия</div>
+                    <div class="staffReq1">Имя</div>
+                    <div class="staffReq1">Отчество</div>
+                    <div class="staffReq1">Должность</div>
+                </div>
+                <div>
+
+                    <form  method="post">
+                        <div  th:each="el : ${post}" class="c1">
+                            <div class="staffReq"><input type="text"  th:value="${el.lname}"    onkeyup="checkParamsUpdateStaffInAdmin()" id="lname" name="lname" placeholder="Имя"></div>
+                            <div class="staffReq"><input type="text"  th:value="${el.fname}"    onkeyup="checkParamsUpdateStaffInAdmin()" id="fname" name="fname" placeholder="Фамилия"></div>
+                            <div class="staffReq"><input type="text"  th:value="${el.pname}"    onkeyup="checkParamsUpdateStaffInAdmin()" id="pname" name="pname" placeholder="Отчество"></div>
+                            <div class="staffReq"><input type="text"  th:value="${el.position}" onkeyup="checkParamsUpdateStaffInAdmin()" id="position" name="position" placeholder="Должность" list="positionStaff"></div>
+                            <datalist id="positionStaff" >
+                                <option th:each="staff : ${positions}"
+                                        th:value="${staff}"
+                                        th:text="${staff}">
+                                </option>
+                            </datalist>
+                        </div>
+                        <div class="inline">
+                                <form th:action="@{/admin}" method="post" >
+                                    <button class="btnUpdateStaff" type="submit" id="btnUpdateStaff" disabled>Обновить</button>
+                                </form>
+                            <div class="btnBack"><a href="/admin">Назад</a></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="/js/allScripts.js"></script>
+</body>
+
+<div th:insert="blocksHTML/footer :: footer"></div>
+
+</html>
